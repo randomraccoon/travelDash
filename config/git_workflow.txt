@@ -1,0 +1,22 @@
+git
+- local
+- saves commits
+github
+- online
+- mirrors local repos
+
+git pull
+
+git checkout -b featurebranch
+(work on it)
+git add .
+git commit -m "Implement Feature"
+git push
+
+when the feature is ready
+git pull
+git merge master (while in featurbranch)
+git checkout master
+git merge featurebranch (while in master)
+git push origin master
+tell the other guy
