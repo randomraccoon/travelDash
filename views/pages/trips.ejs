@@ -4,7 +4,7 @@
 <div class = "container">
   <div class = "content">
     <h1 id = "mainHeader">Travel Dash</h1>
-    <h2 id = "question">___'s Trips</h2> <!--insert logic here-->
+    <h2 id = "question"><%= name %>'s Trips</h2> <!--insert logic here-->
     <table class = 'table'>
           <thead>
             <tr>
@@ -14,11 +14,11 @@
             </tr>
           </thead>
           <tbody>
-            <% for(var i = 0; i<data.length; i++){ %>
+            <% for(var i = 0; i<trips.length; i++){ %>
             <tr>
-                <td><%= trip[i].title %></td>
-                <td><%= trip[i].description %></td>
-                <td><%= trip[i].flight_id %></td>
+                <td><%= trips[i].title %></td>
+                <td><%= trips[i].description %></td>
+                <td><%= trips[i].flight_id %></td>
               <% } %>
             </tr>
           </tbody>
