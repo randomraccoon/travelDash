@@ -1,18 +1,39 @@
 <% include ../partials/header %>
 <% include ../partials/navbar %>
-<body class = "registerBody">
+<body class = "tripsBody">
 <div class = "container">
   <div class = "content">
     <h1 id = "mainHeader">Travel Dash</h1>
-    <h2 id = "question">___'s Trips</h2>
-    <p id = "standardBody">INSERT TABLE HERE WITH TRIPS LISTED</p>
+    <h2 id = "question">___'s Trips</h2> <!--insert logic here-->
+    <table class = 'table'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Flight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i<data.length; i++){ %>
+            <tr>
+                <td><%= trip[i].title %></td>
+                <td><%= trip[i].description %></td>
+                <td><%= trip[i].flight_id %></td>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
     <h2 id = "question">Create New Trip</h2>
     <p id = "standardBody">Select Flight</p>
-    <select id ="activities" onchange="location = this.value;" class = "activities">
-        <option id = "option" value="" disabled selected>Select Flight</option>
-          <option id = "option" value="">_____</option>
-    </select>
-    <p id = "standardBody">FORM NEW FLIgHT HERE (TITLE AND DESCRIPTION)</p>
+    <form action="/trips" method="post" id = "standardBody">
+      <select class="activities" name="flight">
+          <option id = "option" value="" disabled selected>Select Flight</option>
+          <option id = "option" value="">_____</option> <!--insert logic here-->
+      </select>
+      <input type="text" name="title" placeholder="Trip Title">
+      <input type="text" name="description" placeholder="Description">
+      <input type="submit">
+    </form>
   </div>
 </div>
 <% include ../partials/footer %>

@@ -46,7 +46,7 @@ __#5__
 
 ```
 As a airline
-When I visit '/airline/login'
+When I visit '/airlines/login'
 Then I see a login form.
 ```
 
@@ -55,14 +55,14 @@ __#6__
 ```
 As a airline
 When I login
-Then I am redirected to "/airline"
+Then I am redirected to "/airlines"
 ```
 
 __#7__
 
 ```
 As a airline
-When I visit "/airline"
+When I visit "/airlines"
 Then I see a list of all upcoming flights (for the airline I'm logged in as).
 ```
 
@@ -70,7 +70,7 @@ __#8__
 
 ```
 As a airline
-When I visit "/airline"
+When I visit "/airlines"
 Then I should see a form to create a new flight.
 ```
 
