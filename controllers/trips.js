@@ -11,13 +11,17 @@ module.exports = {
         returnObj.name = resultArr[0].name;
         console.log(returnObj.name);
         knex('trips')
-          .select('id')
           .where('user_id', req.session.user)
           .then((resultArr)=> {
-            console.log(resultArr);
-            res.render('pages/trips',returnObj);
+            returnObj.trips = resultArr;
+            console.log(resultArr.map(o=>o.id));
+            knex('flights')
+              .select('id')
+              .then((resultArr)=> {
+                returnObj.flights = resultArr.map(o=>o.id);
+                res.render('pages/trips',returnObj);
+              })
           })
-
       });
   },
 };

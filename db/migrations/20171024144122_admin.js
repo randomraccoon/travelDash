@@ -4,7 +4,10 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('username').notNullable();
     table.string('password').notNullable();
-    table.foreign('airline_id').references('airlines');
+    table.integer('airline_id').references("id")
+      .inTable("airlines")
+      .onDelete("CASCADE")
+      .index();
     table.timestamps(true, true);
   });
 };
