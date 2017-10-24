@@ -27,6 +27,22 @@ module.exports = {
       .catch((err)=>{
         req.session.message = "You entered a invalid username or password."
         res.redirect('/')
-      })
+      });
+  }
+
+  register: function(req, res) {
+    encryption.hash(req.body).then((encryptedUser)=>{
+      // take the encrypted user and insert them into the db.
+      knex('users')
+        .insert(encryptedUser)
+        .then(()=>{
+          req.session.message = "You have successfully registered! Please log in.";
+          res.redirect('/users/login');
+        })
+        .catch(()=>{
+          req.session.message = "You entered invalid data. Please register again."
+          res.redirect('/users/login');
+        })
+    });
   }
 }

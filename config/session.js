@@ -7,8 +7,7 @@ module.exports = function(app){
       knex: knex,
       tablename: 'sessions' // optional. Defaults to 'sessions'
   });
-
-
+  
   app.use(session({
       secret: 'keyboard cat',
       cookie: {

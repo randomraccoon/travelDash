@@ -7,6 +7,4 @@ module.exports = function(app){
 
   app.post('/register', main.register);
 
-  
-
 }
