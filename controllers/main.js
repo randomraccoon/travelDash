@@ -28,7 +28,7 @@ module.exports = {
         req.session.message = "You entered a invalid username or password."
         res.redirect('/')
       });
-  }
+  },
 
   register: function(req, res) {
     encryption.hash(req.body).then((encryptedUser)=>{
@@ -44,5 +44,5 @@ module.exports = {
           res.redirect('/users/login');
         })
     });
-  }
+  },
 }
