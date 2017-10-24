@@ -16,3 +16,6 @@ routes_setter(app);
 app.listen(port, function() {
   console.log('Listening on', port);
 });
+
+//view version on command linbe by copy and pasting the code below.  
+//export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "

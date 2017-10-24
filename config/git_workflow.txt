@@ -10,3 +10,6 @@ done making changes:
   tell partner
   git checkout featureBranch
   git merge master
+
+if stuck in merge message (vi)
+  :wq enter
