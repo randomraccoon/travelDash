@@ -3,32 +3,35 @@ const encryption = require('../config/encryption.js')
 
 module.exports = {
   index: function(req, res) {
-    res.render('pages/index', {message: req.session.message});
+    res.render('pages/index', {
+      message: req.session.message
+    });
     req.session.message = null;
   },
 
   login: function(req, res) {
     knex('users')
       .where('email', req.body.email)
-      .then((result)=>{
-
+      .then((result) => {
         let user = result[0];
-
-        encryption.check(user, req.body).then((isValid)=>{
-          console.log(isValid);
-          console.log(user.email);
-          if(isValid){
-            req.session.user = user.id;
-            res.redirect('/trips');
-          }else{
-            req.session.message = "You entered a invalid username or password.";
-            res.redirect('/');
-          }
-        })
-      })
-      .catch((err)=>{
-        req.session.message = "You entered a invalid username or password."
-        res.redirect('/')
+        if (user) {
+          encryption.check(user, req.body)
+            .then((isValid) => {
+              if (isValid) {
+                req.session.user = user.id;
+                res.redirect('/trips');
+              } else {
+                req.session.message = "You entered an invalid username or password.";
+                res.redirect('/');
+              }
+            })
+        } else {
+          req.session.message = "You entered an invalid username or password."
+          res.redirect('/');
+        }
+      }).catch((err) => {
+        req.session.message = "You broke our webpage. Try again, nicely this time."
+        res.redirect('/');
       });
   },
 
@@ -38,20 +41,22 @@ module.exports = {
   },
 
   registration: function(req, res) {
-    res.render("pages/register", {message: req.session.message});
+    res.render("pages/register", {
+      message: req.session.message
+    });
     req.session.message = null;
   },
 
   register: function(req, res) {
-    encryption.hash(req.body).then((encryptedUser)=>{
+    encryption.hash(req.body).then((encryptedUser) => {
       // take the encrypted user and insert them into the db.
       knex('users')
         .insert(encryptedUser)
-        .then(()=>{
+        .then(() => {
           req.session.message = "You have successfully registered! Please log in.";
           res.redirect('/');
         })
-        .catch(()=>{
+        .catch(() => {
           req.session.message = "You entered invalid data. Please register again."
           res.redirect('/register');
         })
