@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<body class = "registerBody">
+<div class = "container">
+  <div class = "content">
+    <h1 id = "mainHeader">Travel Dash</h1>
+    <h2 id = "question">___'s Trips</h2>
+    <p id = "standardBody">INSERT TABLE HERE WITH TRIPS LISTED</p>
+    <h2 id = "question">Create New Trip</h2>
+    <p id = "standardBody">Select Flight</p>
+    <select id ="activities" onchange="location = this.value;" class = "activities">
+        <option id = "option" value="" disabled selected>Select Flight</option>
+          <option id = "option" value="">_____</option>
+    </select>
+    <p id = "standardBody">FORM NEW FLIgHT HERE (TITLE AND DESCRIPTION)</p>
+  </div>
+</div>
+<% include ../partials/footer %>
