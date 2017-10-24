@@ -2,7 +2,7 @@ const knex = require("../db/knex.js");
 
 module.exports = {
   index: function(req, res) {
-    res.render('pages/index');
+    res.render('pages/index', {message: req.session.message});
   },
 
   login: function(req, res) {
@@ -30,6 +30,10 @@ module.exports = {
       });
   },
 
+  registration: function(req, res) {
+    res.render("register", {message: req.session.message});
+  },
+
   register: function(req, res) {
     encryption.hash(req.body).then((encryptedUser)=>{
       // take the encrypted user and insert them into the db.
@@ -37,11 +41,11 @@ module.exports = {
         .insert(encryptedUser)
         .then(()=>{
           req.session.message = "You have successfully registered! Please log in.";
-          res.redirect('/users/login');
+          res.redirect('/');
         })
         .catch(()=>{
           req.session.message = "You entered invalid data. Please register again."
-          res.redirect('/users/login');
+          res.redirect('/register');
         })
     });
   },
