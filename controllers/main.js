@@ -4,6 +4,7 @@ const encryption = require('../config/encryption.js')
 module.exports = {
   index: function(req, res) {
     res.render('pages/index', {message: req.session.message});
+    req.session.message = null;
   },
 
   login: function(req, res) {
@@ -31,8 +32,14 @@ module.exports = {
       });
   },
 
+  logout: function(req, res) {
+    req.session.user = null;
+    res.redirect('/');
+  },
+
   registration: function(req, res) {
     res.render("pages/register", {message: req.session.message});
+    req.session.message = null;
   },
 
   register: function(req, res) {
