@@ -20,3 +20,13 @@ git checkout master
 git merge featurebranch (while in master)
 git push origin master
 tell the other guy
+
+
+done making changes:
+(in feature branch)
+git add .
+git commit -m "Commit message"
+git checkout master
+git pull
+git merge featureBranch
+git push
