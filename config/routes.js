@@ -1,6 +1,6 @@
-const index = require("../controllers/index.js")
+const main = require("../controllers/main.js")
 module.exports = function(app){
 
-  app.get('/', index.index);
+  app.get('/', main.index);
 
 }
