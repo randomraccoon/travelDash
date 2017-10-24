@@ -1,11 +1,12 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+require('./config/session.js')(app);
 
 app.set('view engine', 'ejs');
 
