@@ -5,9 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        {name:'Brian McGrane', email:'b@yahoo.com', password:'test'},
-        {name:'Trevor Young', email:'t@yahoo.com', password:'test2'},
-        {name:'Barbara Doring', email:'barb@yahoo.com', password:'test3'}
+        {name:'cameron', email:'c@me.ron', password:'$2a$10$AkhOFbYjKs.h3QikCCmfbOaLp4X4WbqQgC/RrA5b8jc8m/twnPHU6'},
+        {name:'Trevor Young', email:'tcyoung4@asu.edu', password:'$2a$10$Yqt4zT4nz3F8xRZYYztMFO2R/3Yv44lLW4AzUcEIpCbNjX.q1lirW'}
       ]);
     });
 };
