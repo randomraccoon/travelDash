@@ -4,6 +4,12 @@
   background-size: cover;
 }
 
+.registerBody {
+  background-image: url("./register.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navbar {
   position: fixed;
   z-index: 5
