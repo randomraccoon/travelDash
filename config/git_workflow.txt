@@ -29,4 +29,5 @@ git commit -m "Commit message"
 git checkout master
 git pull
 git merge featureBranch
+git commit -m "Merge message"
 git push
