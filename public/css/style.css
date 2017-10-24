@@ -1,0 +1,122 @@
+.homepageBody {
+  background-image: url("./mainbackground.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 5
+
+}
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Questrial', sans-serif;
+    font-size: 16px;
+    color: white;
+
+  }
+
+  li a:hover {
+    color: black;
+  }
+
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  content: ' ';
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: .2px;
+  background-image: url('./coachella.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.content{
+  border: 2px solid white;
+  border-radius: 25px;
+  width: 1000px;
+  background-color: white;
+  opacity: .7;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 40px;
+}
+#mainHeader {
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 100px;
+  color: black;
+}
+
+#standardBody {
+  font-family: 'Questrial', sans-serif;
+  font-size:16px;
+  color: black;
+}
+
+
+#question {
+  font-family: 'Questrial', sans-serif;
+  font-size: 50px;
+  font-weight: bolder;
+  color: black;
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+#tagline {
+  font-family: 'Sacramento', cursive;
+  font-size: 40px;
+}
+
+
+.footer{
+	width: 100%;
+	position: fixed;
+	margin-bottom: 0px;
+	height: 80px;
+	background-color: #1A1A1A;
+	display: block;
+}
+
+.footerContent{
+	width: 80%;
+	margin: auto;
+	padding: 5px;
+	text-align: center;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
