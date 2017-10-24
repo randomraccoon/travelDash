@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<div class = "container">
+  <div class = "content">
+    <h1 id = "mainHeader">Travel Dash</h1>
+    <h2 id = "tagline">Customized flight and airline tracking for your travels.</h2>
+    <h2 id = "question">Log In!</h2>
+    <form action="/login" method="post">
+      <input type="text" name="email" placeholder="Email">
+      <input type="text" name="password" placeholder="Password">
+      <input type="submit">
+    </form>
+  </div>
+</div>
+<% include ../partials/footer %>
