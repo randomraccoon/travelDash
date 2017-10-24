@@ -13,3 +13,5 @@ done making changes:
 
 if stuck in merge message (vi)
   :wq enter
+
+dumb change
