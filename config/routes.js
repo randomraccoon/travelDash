@@ -6,7 +6,7 @@ module.exports = function(app){
   app.post('/login', main.login);
 
   app.get('/register', main.registration);
-  
+
   app.post('/register', main.register);
 
 }

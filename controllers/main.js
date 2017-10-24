@@ -1,4 +1,5 @@
 const knex = require("../db/knex.js");
+const encryption = require('../config/encryption.js')
 
 module.exports = {
   index: function(req, res) {
@@ -31,7 +32,7 @@ module.exports = {
   },
 
   registration: function(req, res) {
-    res.render("register", {message: req.session.message});
+    res.render("pages/register", {message: req.session.message});
   },
 
   register: function(req, res) {
