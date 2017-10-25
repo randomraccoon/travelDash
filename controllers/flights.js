@@ -36,6 +36,11 @@ module.exports = {
       });
   },
 
+  logout: function(req, res) {
+    req.session.airline = null;
+    res.redirect('/airlines/login');
+  },
+
   viewAll: function(req, res) {
     knex('flights')
       .where('airline_id', req.session.airline)

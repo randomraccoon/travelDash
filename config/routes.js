@@ -26,6 +26,8 @@ module.exports = function(app){
 
   app.use(adminAuth);
 
+  app.get('/airlines/logout', flights.logout);
+
   app.get('/airlines', flights.viewAll);
 
   app.post('/airlines', flights.create);
