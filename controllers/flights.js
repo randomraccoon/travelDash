@@ -1,8 +1,10 @@
 const knex = require("../db/knex.js");
+const encryption = require('../config/encryption.js');
 
 module.exports = {
   renderLogin: function(req, res) {
     res.render('pages/airlinelogin',{message: req.session.message});
+    console.log(req.session.message);
     req.session.message = null;
   },
 
@@ -28,6 +30,7 @@ module.exports = {
           res.redirect('/airlines/login');
         }
       }).catch((err) => {
+        console.log(err);
         req.session.message = "You broke our webpage. Try again, nicely this time."
         res.redirect('/airlines/login');
       });
