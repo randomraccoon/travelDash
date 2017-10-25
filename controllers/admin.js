@@ -44,7 +44,7 @@ module.exports = {
 
   index: function(req, res) {
     knex('airlines')
-      .select('id','name')
+      .select('id','name','description')
       .then(resultArr=>{
         let airlines = resultArr;
         knex('airline_users')
