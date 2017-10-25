@@ -40,7 +40,7 @@ module.exports = {
     knex('flights')
       .where('airline_id', req.session.airline)
       .then(resultArr => {
-        res.render('pages/airline',{flights: resultArr, message: req.session.message});
+        res.render('pages/flights',{flights: resultArr, message: req.session.message});
         req.session.message = null;
       })
       .catch((err)=>{
