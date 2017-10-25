@@ -4,11 +4,27 @@
 <div class = "container">
   <div class = "content">
     <h1 id = "mainHeader">Travel Dash</h1>
-    <h2 id = "tagline">Customized flight and airline tracking.</h2>
-    <h2 id = "question">Airline Admin Login - Access Flight Information</h2>
+    <h2 id = "question">Flight Information</h2> <!--insert logic here-->
+    <table class = 'table'>
+          <thead>
+            <tr>
+              <th>Start</th>
+              <th>Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i<flights.length; i++){ %>
+            <tr>
+                <td><%= flights[i].start %></td>
+                <td><%= trips[i].destination %></td>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
+    <h2 id = "question">Create New Flight</h2>
     <form action="/airlines" method="post" id = "standardBody">
-      <input type="text" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
+      <input type="text" name="start" placeholder="Depart">
+      <input type="text" name="destination" placeholder="Arrive">
       <input type="submit">
     </form>
   </div>
