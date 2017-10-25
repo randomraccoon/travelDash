@@ -47,9 +47,15 @@ module.exports = {
       .select('id','name')
       .then(resultArr=>{
         let airlines = resultArr;
-        res.render('pages/admin', {airlines: airlines, message: req.session.message});
-        req.session.message = null;
-        console.log("Admin load");
+        knex('airline_users')
+          .select(['username', 'airlines.name'])
+          .innerJoin('airlines','airline_users.airline_id','airlines.id')
+          .then(resultArr=>{
+            res.render('pages/admin', {airline_users: resultArr, airlines: airlines, message: req.session.message});
+            req.session.message = null;
+            console.log("Admin load");
+          })
+
       });
   },
 
