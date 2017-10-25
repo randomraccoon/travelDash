@@ -3,9 +3,9 @@
   <li><a class="active" href="/">Travel Dash Home</a></li>
 </ul>
 <body class = "adminBody">
-<div class = "container">
   <% include ../partials/message %>
-  <br>
+<div class = "adminContainer">
+    <br>
   <div class = "content">
     <p id = "mainHeader">Travel Dash</p>
     <h2 id = "tagline">Welcome Admin!</h2>
@@ -50,16 +50,15 @@
         <table class = 'table'>
               <thead>
                 <tr>
-                  <th>Userame</th>
+                  <th>Username</th>
                   <th>Airline</th>
-                  <
                 </tr>
               </thead>
               <tbody>
                 <% for(var i = 0; i<airline_users.length; i++){ %>
                 <tr>
                     <td><%= airline_users[i].username %></td>
-                    <td><%= airline_users[i].airline %></td>
+                    <td><%= airline_users[i].name %></td>
                   <% } %>
                 </tr>
               </tbody>
