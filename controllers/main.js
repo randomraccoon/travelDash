@@ -54,7 +54,11 @@ module.exports = {
     encryption.hash(req.body).then((encryptedUser) => {
       // take the encrypted user and insert them into the db.
       knex('users')
-        .insert(encryptedUser)
+        .insert({
+          name: encryptedUser.name,
+          email: encryptedUser.email,
+          password: encryptedUser.password
+        })
         .then(() => {
           req.session.message = "You have successfully registered! Please log in.";
           res.redirect('/');

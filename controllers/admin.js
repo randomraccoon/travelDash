@@ -43,8 +43,33 @@ module.exports = {
   },
 
   index: function(req, res) {
-    res.render('pages/admin', {message: req.session.message});
-    req.session.message = null;
-    console.log("Admin load");
+    knex('airlines')
+      .select('id','name')
+      .then(resultArr=>{
+        let airlines = resultArr;
+        res.render('pages/admin', {airlines: airlines, message: req.session.message});
+        req.session.message = null;
+        console.log("Admin load");
+      });
+  },
+
+  createAirlineUser: function(req, res) {
+    encryption.hash(req.body).then((encryptedUser) => {
+      // take the encrypted user and insert them into the db.
+      knex('airline_users')
+        .insert({
+          username: encryptedUser.username,
+          password: encryptedUser.password,
+          airline_id: encryptedUser.airline_id
+        })
+        .then(() => {
+          req.session.message = `Airline user "${encryptedUser.username}" created.`;
+          res.redirect('/admin');
+        })
+        .catch(() => {
+          req.session.message = "You entered invalid data. Please register again."
+          res.redirect('/admin');
+        })
+    });
   }
 };

@@ -43,6 +43,8 @@ module.exports = function(app){
 
   app.get('/admin/logout', admin.logout);
 
+  app.post('/admin/airline_users', admin.createAirlineUser);
+
 
   function userAuth(req, res, next){
     if(req.session.user || req.session.airline || req.session.admin){
