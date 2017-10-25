@@ -1,1 +1,80 @@
-howdy
+<% include ../partials/header %>
+<ul class = "navbar" style="list-style: none;">
+  <li><a class="active" href="/">Travel Dash Home</a></li>
+</ul>
+<body class = "airlineBody">
+<div class = "container">
+  <% include ../partials/message %>
+  <br>
+  <div class = "content">
+    <p id = "mainHeader">Travel Dash</p>
+    <h2 id = "tagline">Welcome Admin!</h2>
+
+    <h2 id = "question">Current User Info</h2>
+    <table class = 'table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i<trips.length; i++){ %>
+            <tr>
+                <td><%= users[i].name %></td>
+                <td><%= users[i].email %></td>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
+
+      <h2 id = "question">Current Airlines</h2>
+      <table class = 'table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i<airlines.length; i++){ %>
+              <tr>
+                  <td><%= airlines[i].name %></td>
+                  <td><%= airlines[i].description %></td>
+                <% } %>
+              </tr>
+            </tbody>
+          </table>
+
+        <h2 id = "question">Current Airline Users</h2>
+        <table class = 'table'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Airline</th>
+                  <
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i = 0; i<airline_users.length; i++){ %>
+                <tr>
+                    <td><%= airline_users[i].name %></td>
+                    <td><%= airline_users[i].airline %></td>
+                  <% } %>
+                </tr>
+              </tbody>
+            </table>
+            <form action="/admin/airline_users" method="post">
+              <select class="activities" name="airline_id">
+                  <option id = "option" value="" disabled selected>Select Airline</option>
+                  <% for(var i = 0; i<airlines.length; i++){ %>
+                  <option value="<%= airlines[i].id %>"><%= airlines[i].name %></option>
+                  <% } %>
+              </select>
+              <input type="text" name="username" placeholder="Username">
+              <input type="password" name="password" placeholder="Password">
+              <input type="submit">
+            </form>
+  </div>
+</div>
+<% include ../partials/footer %>
