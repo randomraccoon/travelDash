@@ -9,21 +9,16 @@ module.exports = {
       .limit(1)
       .then((resultArr)=>{
         returnObj.name = resultArr[0].name;
-        knex('trips')
-          .where('user_id', req.session.user)
-          .then((resultArr)=> {
-            returnObj.trips = resultArr;
+        knex.raw('SELECT t.title, t.description, a.name, f.start, f.destination FROM trips AS t JOIN flights AS f ON (t.flight_id = f.id) JOIN airlines AS a ON (f.airline_id = a.id)')
+          .then(resultArr => {
+            returnObj.trips = resultArr.rows.map(f=>createFlightTitle(f));
+            console.log(JSON.stringify(returnObj.trips, null, 2));
             knex('flights')
               .select(['flights.id','start','destination','airlines.name'])
               .innerJoin('airlines','flights.airline_id','airlines.id')
               .then((resultArr)=> {
                 returnObj.flights = resultArr;
-                for (let flight of returnObj.flights) {
-                  flight.title = `${abbreviate(flight.name)} ${flight.start}➟${flight.destination}`;
-                  delete flight.name;
-                  delete flight.start;
-                  delete flight.destination;
-                }
+                returnObj.flights = returnObj.flights.map(f=>createFlightTitle(f));
                 returnObj.message = req.session.message;
                 req.session.message = null;
                 res.render('pages/trips',returnObj);
@@ -63,4 +58,12 @@ function abbreviate(str) {
   //regex selects first letter after each word boundary
   //match returns array of all segments that match regex
   return str.match(/\b\w/g).join('').toUpperCase();
+}
+
+function createFlightTitle(flight) {
+  flight.flight_title = `${abbreviate(flight.name)} ${flight.start}➟${flight.destination}`;
+  delete flight.name;
+  delete flight.start;
+  delete flight.destination;
+  return flight;
 }

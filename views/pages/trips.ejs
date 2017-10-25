@@ -22,7 +22,7 @@
             <tr>
                 <td><%= trips[i].title %></td>
                 <td><%= trips[i].description %></td>
-                <td><%= trips[i].flight_id %></td>
+                <td><%= trips[i].flight_title %></td>
               <% } %>
             </tr>
           </tbody>
@@ -32,7 +32,7 @@
       <select class="activities" name="flight_id">
           <option id = "option" value="" disabled selected>Select Flight</option>
           <% for(var i = 0; i<flights.length; i++){ %>
-          <option value="<%= flights[i].id %>"><%= flights[i].title %></option> <!--insert logic here-->
+          <option value="<%= flights[i].id %>"><%= flights[i].flight_title %></option> <!--insert logic here-->
           <% } %>
       </select>
       <input type="text" name="title" placeholder="Trip Title">
