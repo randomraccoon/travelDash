@@ -14,8 +14,9 @@ module.exports = {
   login: function(req, res) {
     knex('users')
       .where('email', req.body.email)
-      .then((result) => {
-        let user = result[0];
+      .limit(1)
+      .then(resultArr => {
+        let user = resultArr[0];
         if (user) {
           encryption.check(user, req.body)
             .then((isValid) => {

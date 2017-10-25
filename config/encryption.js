@@ -18,7 +18,6 @@ module.exports = {
           });
       });
     })
-
   },
 
   check: function(encryptedUser, user){
@@ -28,8 +27,5 @@ module.exports = {
           resolve(isMatch);
       });
     })
-
   }
-
-
 }

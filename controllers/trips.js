@@ -12,7 +12,6 @@ module.exports = {
         knex.raw('SELECT t.title, t.description, a.name, f.start, f.destination FROM trips AS t JOIN flights AS f ON (t.flight_id = f.id) JOIN airlines AS a ON (f.airline_id = a.id)')
           .then(resultArr => {
             returnObj.trips = resultArr.rows.map(f=>createFlightTitle(f));
-            console.log(JSON.stringify(returnObj.trips, null, 2));
             knex('flights')
               .select(['flights.id','start','destination','airlines.name'])
               .innerJoin('airlines','flights.airline_id','airlines.id')
