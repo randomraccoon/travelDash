@@ -9,7 +9,7 @@ module.exports = {
   },
 
   login: function(req, res) {
-    knex('admin')
+    knex('airline_users')
       .where('username', req.body.username)
       .limit(1)
       .then((resultArr) => {

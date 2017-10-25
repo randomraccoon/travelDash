@@ -40,12 +40,14 @@ module.exports = {
   },
 
   create: function(req, res) {
+    console.log("Attempting to create a trip!");
+    console.log('flight_id', req.body.flight_id, typeof req.body.flight_id);
     knex('trips')
       .insert({
         user_id: req.session.user,
         title: req.body.title,
         description: req.body.description,
-        flight_id: req.body.flight_id
+        flight_id: +req.body.flight_id
       }, '*')
       .then((result)=>{
         req.session.message = "Added trip!"
