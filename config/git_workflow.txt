@@ -14,4 +14,5 @@ done making changes:
 if stuck in merge message (vi)
   :wq enter
 
-dumb change
+view current branch on command line by copy and pasting the code below:
+  export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "

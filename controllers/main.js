@@ -21,12 +21,12 @@ module.exports = {
                 req.session.user = user.id;
                 res.redirect('/trips');
               } else {
-                req.session.message = "You entered an invalid username or password.";
+                req.session.message = "You entered an incorrect email or password.";
                 res.redirect('/');
               }
             })
         } else {
-          req.session.message = "You entered an invalid username or password."
+          req.session.message = "You entered an incorrect email or password."
           res.redirect('/');
         }
       }).catch((err) => {
