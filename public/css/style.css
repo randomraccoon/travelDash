@@ -75,6 +75,11 @@ thead {
       background-size: cover;
 }
 
+.adminBody {
+  background: black url("./admin.jpg") no-repeat center center fixed;
+      background-size: cover;
+}
+
 .navbar {
   position: fixed;
   z-index: 5
