@@ -3,11 +3,12 @@ const encryption = require('../config/encryption.js');
 
 module.exports = {
   index: function(req, res) {
-    res.render('pages/index', {
-      message: req.session.message
-    });
+    let message = {message: req.session.message};
     req.session.message = null;
-    console.log("Index page load");
+    req.session.save(err=>{
+      res.render('pages/index', message);
+      console.log("Index page load");
+    });
   },
 
   login: function(req, res) {
@@ -23,31 +24,40 @@ module.exports = {
                 res.redirect('/trips');
               } else {
                 req.session.message = "You entered an incorrect email or password.";
-                res.redirect('/');
+                req.session.save(err=>{
+                  res.redirect('/');
+                });
               }
             })
         } else {
           req.session.message = "You entered an incorrect email or password."
-          res.redirect('/');
+          req.session.save(err=>{
+            res.redirect('/');
+          });
         }
       }).catch((err) => {
         req.session.message = "You broke our webpage. Try again, nicely this time."
-        res.redirect('/');
+        req.session.save(err=>{
+          res.redirect('/');
+        });
       });
   },
 
   logout: function(req, res) {
     req.session.user = null;
-    res.redirect('/');
-    console.log("User logout");
+    req.session.save(err=>{
+      res.redirect('/');
+      console.log("User logout");
+    });
   },
 
   registration: function(req, res) {
-    res.render("pages/register", {
-      message: req.session.message
-    });
+    let message = {message: req.session.message};
     req.session.message = null;
-    console.log("User registration load");
+    req.session.save(err=>{
+      res.render("pages/register", message);
+      console.log("User registration load");
+    });
   },
 
   register: function(req, res) {
@@ -61,11 +71,15 @@ module.exports = {
         })
         .then(() => {
           req.session.message = "You have successfully registered! Please log in.";
-          res.redirect('/');
+          req.session.save(err=>{
+            res.redirect('/');
+          });
         })
         .catch(() => {
           req.session.message = "You entered invalid data. Please register again."
-          res.redirect('/register');
+          req.session.save(err=>{
+            res.redirect('/register');
+          });
         })
     });
   },
