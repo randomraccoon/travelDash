@@ -28,7 +28,9 @@
     <form action="/trips" method="post" id = "standardBody">
       <select class="activities" name="flight">
           <option id = "option" value="" disabled selected>Select Flight</option>
-          <option id = "option" value="">_____</option> <!--insert logic here-->
+          <% for(var i = 0; i<trips.length; i++){ %>
+          <option id = "option" value=""><%=  %></option> <!--insert logic here-->
+          <% } %>
       </select>
       <input type="text" name="title" placeholder="Trip Title">
       <input type="text" name="description" placeholder="Description">
