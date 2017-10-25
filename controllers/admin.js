@@ -4,8 +4,8 @@ const encryption = require('../config/encryption.js');
 module.exports = {
   renderLogin: function(req, res) {
     res.render('pages/adminlogin',{message: req.session.message});
-    console.log(req.session.message);
     req.session.message = null;
+    console.log("Admin login load");
   },
 
   login: function(req, res) {
@@ -39,9 +39,12 @@ module.exports = {
   logout: function(req, res) {
     req.session.admin = null;
     res.redirect('/admin/login');
+    console.log("Logged out of admin");
   },
 
   index: function(req, res) {
-    res.render('pages/admin');
+    res.render('pages/admin', {message: req.session.message});
+    req.session.message = null;
+    console.log("Admin load");
   }
 };

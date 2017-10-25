@@ -7,6 +7,7 @@ module.exports = {
       message: req.session.message
     });
     req.session.message = null;
+    console.log("Index page load");
   },
 
   login: function(req, res) {
@@ -38,6 +39,7 @@ module.exports = {
   logout: function(req, res) {
     req.session.user = null;
     res.redirect('/');
+    console.log("User logout");
   },
 
   registration: function(req, res) {
@@ -45,6 +47,7 @@ module.exports = {
       message: req.session.message
     });
     req.session.message = null;
+    console.log("User registration load");
   },
 
   register: function(req, res) {

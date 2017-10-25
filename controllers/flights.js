@@ -4,8 +4,8 @@ const encryption = require('../config/encryption.js');
 module.exports = {
   renderLogin: function(req, res) {
     res.render('pages/airlinelogin',{message: req.session.message});
-    console.log(req.session.message);
     req.session.message = null;
+    console.log("Airline login load");
   },
 
   login: function(req, res) {
@@ -52,6 +52,7 @@ module.exports = {
             let airline = resultArr[0];
             res.render('pages/flights',{airline: airline, flights: flights, message: req.session.message});
             req.session.message = null;
+            console.log("Flights load");
           })
       })
       .catch((err)=>{
