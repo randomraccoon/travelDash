@@ -2,7 +2,7 @@ const knex = require("../db/knex.js");
 
 module.exports = {
   renderLogin: function(req, res) {
-    res.render('airlinelogin',{message: req.session.message});
+    res.render('pages/airlinelogin',{message: req.session.message});
     req.session.message = null;
   },
 
@@ -37,7 +37,7 @@ module.exports = {
     knex('flights')
       .where('airline_id', req.session.airline)
       .then(resultArr => {
-        res.render('airline',{flights: resultArr, message: req.session.message});
+        res.render('pages/airline',{flights: resultArr, message: req.session.message});
         req.session.message = null;
       })
       .catch((err)=>{
