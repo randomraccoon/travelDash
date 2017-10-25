@@ -3,9 +3,12 @@ const encryption = require('../config/encryption.js');
 
 module.exports = {
   renderLogin: function(req, res) {
-    res.render('pages/airlinelogin',{message: req.session.message});
+    let message = {message: req.session.message};
     req.session.message = null;
-    console.log("Airline login load");
+    req.session.save(err=>{
+      res.render('pages/airlinelogin', message);
+      console.log("Airline login load");
+    });
   },
 
   login: function(req, res) {
@@ -19,26 +22,37 @@ module.exports = {
             .then((isValid) => {
               if (isValid) {
                 req.session.airline = user.airline_id;
-                res.redirect('/airlines');
+                req.session.save(err=>{
+                  res.redirect('/airlines');
+                });
+
               } else {
                 req.session.message = "You entered an invalid username or password.";
-                res.redirect('/airlines/login');
+                req.session.save(err=>{
+                  res.redirect('/airlines/login');
+                });
               }
             })
         } else {
           req.session.message = "You entered an invalid username or password."
-          res.redirect('/airlines/login');
+          req.session.save(err=>{
+            res.redirect('/airlines/login');
+          });
         }
       }).catch((err) => {
         console.log(err);
         req.session.message = "You broke our webpage. Try again, nicely this time."
-        res.redirect('/airlines/login');
+        req.session.save(err=>{
+          res.redirect('/airlines/login');
+        });
       });
   },
 
   logout: function(req, res) {
     req.session.airline = null;
-    res.redirect('/airlines/login');
+    req.session.save(err=>{
+      res.redirect('/airlines/login');
+    });
   },
 
   viewAll: function(req, res) {
@@ -50,16 +64,21 @@ module.exports = {
           .where('id', req.session.airline)
           .then((resultArr)=>{
             let airline = resultArr[0];
-            res.render('pages/flights',{airline: airline, flights: flights, message: req.session.message});
+            let returnObj = {airline: airline, flights: flights, message: req.session.message};
             req.session.message = null;
-            console.log("Flights load");
+            req.session.save(err=>{
+              res.render('pages/flights',returnObj);
+              console.log("Flights load");
+            });
           })
       })
       .catch((err)=>{
         console.log(err);
         req.session.airline = null;
         req.session.message = "There was a problem. Please try again.";
-        res.redirect('/airlines/login');
+        req.session.save(err=>{
+          res.redirect('/airlines/login');
+        });
       })
   },
 
@@ -72,12 +91,16 @@ module.exports = {
       }, '*')
       .then((result)=>{
         req.session.message = "Added flight!"
-        res.redirect('/airlines');
+        req.session.save(err=>{
+          res.redirect('/airlines');
+        });
       })
       .catch((err)=>{
         console.log(err);
         req.session.message = "There was an error adding the flight. Try again.";
-        res.redirect('/airlines');
+        req.session.save(err=>{
+          res.redirect('/airlines');
+        });
       })
   }
 };

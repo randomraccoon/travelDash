@@ -3,9 +3,12 @@ const encryption = require('../config/encryption.js');
 
 module.exports = {
   renderLogin: function(req, res) {
-    res.render('pages/adminlogin',{message: req.session.message});
+    let message = {message: req.session.message};
     req.session.message = null;
-    console.log("Admin login load");
+    req.session.save(err=>{
+      res.render('pages/adminlogin',message);
+      console.log("Admin login load");
+    });
   },
 
   login: function(req, res) {
@@ -19,27 +22,37 @@ module.exports = {
             .then((isValid) => {
               if (isValid) {
                 req.session.admin = true;
-                res.redirect('/admin');
+                req.session.save(err=>{
+                  res.redirect('/admin');
+                });
               } else {
                 req.session.message = "You entered an invalid username or password.";
-                res.redirect('/admin/login');
+                req.session.save(err=>{
+                  res.redirect('/admin/login');
+                });
               }
             })
         } else {
           req.session.message = "You entered an invalid username or password."
-          res.redirect('/admin/login');
+          req.session.save(err=>{
+            res.redirect('/admin/login');
+          });
         }
       }).catch((err) => {
         console.log(err);
         req.session.message = "You broke our webpage. Try again, nicely this time."
-        res.redirect('/admin/login');
+        req.session.save(err=>{
+          res.redirect('/admin/login');
+        });
       });
   },
 
   logout: function(req, res) {
     req.session.admin = null;
-    res.redirect('/admin/login');
-    console.log("Logged out of admin");
+    req.session.save(err=>{
+      res.redirect('/admin/login');
+      console.log("Logged out of admin");
+    });
   },
 
   index: function(req, res) {
@@ -51,9 +64,12 @@ module.exports = {
           .select(['username', 'airlines.name'])
           .innerJoin('airlines','airline_users.airline_id','airlines.id')
           .then(resultArr=>{
-            res.render('pages/admin', {airline_users: resultArr, airlines: airlines, message: req.session.message});
+            let returnObj = {airline_users: resultArr, airlines: airlines, message: req.session.message};
             req.session.message = null;
-            console.log("Admin load");
+            req.session.save(err=>{
+              res.render('pages/admin', returnObj);;
+              console.log("Admin load");
+            });
           })
 
       });
@@ -70,11 +86,15 @@ module.exports = {
         })
         .then(() => {
           req.session.message = `Airline user "${encryptedUser.username}" created.`;
-          res.redirect('/admin');
+          req.session.save(err=>{
+            res.redirect('/admin');
+          });
         })
         .catch(() => {
           req.session.message = "You entered invalid data. Please register again."
-          res.redirect('/admin');
+          req.session.save(err=>{
+            res.redirect('/admin');
+          });
         })
     });
   }
