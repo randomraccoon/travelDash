@@ -24,10 +24,10 @@ module.exports = {
                   delete flight.start;
                   delete flight.destination;
                 }
-                console.log(returnObj.flights);
                 returnObj.message = req.session.message;
                 req.session.message = null;
                 res.render('pages/trips',returnObj);
+                console.log("Trips load");
               })
           })
       })
@@ -40,8 +40,6 @@ module.exports = {
   },
 
   create: function(req, res) {
-    console.log("Attempting to create a trip!");
-    console.log('flight_id', req.body.flight_id, typeof req.body.flight_id);
     knex('trips')
       .insert({
         user_id: req.session.user,
