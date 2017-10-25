@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('trips', (table) => {//posts is table name.
    table.increments(); //ID add to every table you make.
