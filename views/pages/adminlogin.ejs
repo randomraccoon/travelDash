@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<body class = "adminBody">
+<div class = "container">
+  <div class = "content">
+    <h1 id = "mainHeader">Travel Dash</h1>
+    <h2 id = "tagline">Customized flight and airline tracking.</h2>
+    <h2 id = "question">Admin Login - Add and change users</h2>
+    <form action="/admin/login" method="post" id = "standardBody">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit">
+    </form>
+  </div>
+</div>
+<% include ../partials/footer %>
