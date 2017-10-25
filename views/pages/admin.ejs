@@ -3,30 +3,29 @@
   <li><a class="active" href="/">Travel Dash Home</a></li>
 </ul>
 <body class = "adminBody">
-  <% include ../partials/message %>
 <div class = "adminContainer">
     <br>
-  <div class = "content">
+    <% include ../partials/message %>
+  <div class = "adminContent">
     <p id = "mainHeader">Travel Dash</p>
     <h2 id = "tagline">Welcome Admin!</h2>
-
     <h2 id = "question">Current User Info</h2>
     <table class = 'table'>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
             </tr>
           </thead>
           <tbody>
             <% for(var i = 0; i<airline_users.length; i++){ %>
             <tr>
                 <td><%= airline_users[i].name %></td>
-                <td><%= airline_users[i].email %></td>
               <% } %>
             </tr>
           </tbody>
         </table>
+        <br>
+        <br>
 
       <h2 id = "question">Current Airlines</h2>
       <table class = 'table'>
@@ -45,6 +44,8 @@
               </tr>
             </tbody>
           </table>
+          <br>
+          <br>
 
         <h2 id = "question">Current Airline Users</h2>
         <table class = 'table'>
@@ -74,6 +75,8 @@
               <input type="password" name="password" placeholder="Password">
               <input type="submit">
             </form>
+            <br>
+            <br>
   </div>
 </div>
 <% include ../partials/footer %>
