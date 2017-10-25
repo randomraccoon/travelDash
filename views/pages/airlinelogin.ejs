@@ -1,9 +1,11 @@
 <% include ../partials/header %>
-<% include ../partials/navbar %>
+<ul class = "navbar" style="list-style: none;">
+  <li><a class="active" href="/">User? - Click here!</a></li>
+</ul>
 <body class = "airlineBody">
 <div class = "container">
   <div class = "content">
-    <h1 id = "mainHeader">Travel Dash</h1>
+    <p id = "mainHeader">Travel Dash</p>
     <h2 id = "tagline">Customized flight and airline tracking.</h2>
     <h2 id = "question">Airline Admin Login - Access Flight Information</h2>
     <form action="/airlines" method="post" id = "standardBody">
