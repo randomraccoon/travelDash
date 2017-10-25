@@ -36,34 +36,32 @@ html {
           to   { opacity: 1; }
       }
 
+
+
+
 .homepageBody {
-  background-image: url("./mainbackground.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: black url("./mainbackground.jpeg") no-repeat center center fixed;
+      background-size: cover;
 }
 
 .registerBody {
-  background-image: url("./register.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: black url("./register.jpeg") no-repeat center center fixed;
+      background-size: cover;
 }
 
 .tripsBody {
-  background-image: url("./trips.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: black url("./trips.jpeg") no-repeat center center fixed;
+      background-size: cover;
 }
 
 .airlineBody {
-  background-image: url("./airlines.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: black url("./airlines.jpeg") no-repeat center center fixed;
+      background-size: cover;
 }
 
 .flightBody {
-  background-image: url("./flights.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: black url("./flights.jpeg") no-repeat center center fixed;
+      background-size: cover;
 }
 
 .navbar {
