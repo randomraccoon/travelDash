@@ -9,22 +9,55 @@ module.exports = {
       .limit(1)
       .then((resultArr)=>{
         returnObj.name = resultArr[0].name;
-        console.log(returnObj.name);
         knex('trips')
           .where('user_id', req.session.user)
           .then((resultArr)=> {
             returnObj.trips = resultArr;
-            console.log(resultArr.map(o=>o.id));
             knex('flights')
-              .select('id')
+              .select(['flights.id','start','destination','airlines.name'])
+              .innerJoin('airlines','flights.airline_id','airlines.id')
               .then((resultArr)=> {
-                returnObj.flights = resultArr.map(o=>o.id);
+                returnObj.flights = resultArr;
+                for (let flight of returnObj.flights) {
+                  flight.airline = abbreviate(flight.name);
+                  delete flight.name;
+                }
+                returnObj.message = req.session.message;
+                req.session.message = null;
                 res.render('pages/trips',returnObj);
               })
           })
-      });
+      })
+      .catch((err)=>{
+        console.log(err);
+        req.session.user = null;
+        req.session.message = "There was a problem. Please try again.";
+        res.redirect('/');
+      })
   },
+
+  create: function(req, res) {
+    knex('trips')
+      .insert({
+        user_id: req.session.user,
+        title: req.body.title,
+        description: req.body.description,
+        flight_id: req.body.flight_id
+      }, '*')
+      .then((result)=>{
+        req.session.message = "Added trip!"
+        res.redirect('/trips');
+      })
+      .catch((err)=>{
+        console.log(err);
+        req.session.message = "There was an error adding the trip. Try again.";
+        res.redirect('/trips');
+      })
+  }
 };
 
-
-// {name:name, flights:[ids], trips:[{trips}]}
+function abbreviate(str) {
+  //regex selects first letter after each word boundary
+  //match returns array of all segments that match regex
+  return str.match(/\b\w/g).join('').toUpperCase();
+}
