@@ -6,7 +6,7 @@
 <div class = "container">
   <div class = "content">
     <p id = "mainHeader">Travel Dash</p>
-    <h2 id = "question"><%= name %>'s Trips</h2> <!--insert logic here-->
+    <h2 id = "tagline2"><%= name %>'s Trips</h2> <!--insert logic here-->
     <table class = 'table'>
           <thead>
             <tr>
@@ -29,8 +29,8 @@
     <form action="/trips" method="post" id = "standardBody">
       <select class="activities" name="flight">
           <option id = "option" value="" disabled selected>Select Flight</option>
-          <% for(var i = 0; i<trips.length; i++){ %>
-          <option id = "option" value=""><%=  %></option> <!--insert logic here-->
+          <% for(var i = 0; i<flights.length; i++){ %>
+          <option value="flights[i].id"><%= flights[i].title %></option> <!--insert logic here-->
           <% } %>
       </select>
       <input type="text" name="title" placeholder="Trip Title">

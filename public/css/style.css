@@ -45,6 +45,11 @@ html {
   align-self: center;
 }
 
+thead {
+  font-weight: bold;
+  font-size: 30px;
+}
+
 .homepageBody {
   background: black url("./mainbackground.jpeg") no-repeat center center fixed;
       background-size: cover;
@@ -172,6 +177,10 @@ li a {
   font-size: 40px;
 }
 
+#tagline2 {
+  font-family: 'Sacramento', cursive;
+  font-size: 55px;
+}
 
 .footer{
 	width: 100%;
