@@ -49,7 +49,11 @@ module.exports = function(app){
   function userAuth(req, res, next){
     if(req.session.user || req.session.airline || req.session.admin){
       next();
-    }else{
+    } else if (req.originalUrl.startsWith('/admin')){
+      res.redirect("/admin/login");
+    } else if (req.originalUrl.startsWith('/airlines')) {
+      res.redirect("/airlines.login");
+    } else {
       res.redirect("/login")
     }
   }
