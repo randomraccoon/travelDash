@@ -19,9 +19,12 @@ module.exports = {
               .then((resultArr)=> {
                 returnObj.flights = resultArr;
                 for (let flight of returnObj.flights) {
-                  flight.airline = abbreviate(flight.name);
+                  flight.title = `${abbreviate(flight.name)} ${flight.start}➟${flight.destination}`;
                   delete flight.name;
+                  delete flight.start;
+                  delete flight.destination;
                 }
+                console.log(returnObj.flights);
                 returnObj.message = req.session.message;
                 req.session.message = null;
                 res.render('pages/trips',returnObj);

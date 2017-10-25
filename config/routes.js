@@ -14,9 +14,9 @@ module.exports = function(app){
 
   app.post('/register', main.register);
 
-  app.get('/airlines/login', flights.renderLogin);
-
-  app.post('/airlines/login', flights.login);
+  // app.get('/airlines/login', flights.renderLogin);
+  //
+  // app.post('/airlines/login', flights.login);
 
   app.use(userAuth);
 
@@ -26,9 +26,9 @@ module.exports = function(app){
 
   app.use(adminAuth);
 
-  app.get('/airlines', flights.viewAll);
-
-  app.post('/airlines', flights.create);
+  // app.get('/airlines', flights.viewAll);
+  //
+  // app.post('/airlines', flights.create);
 
   function userAuth(req, res, next){
     if(req.session.user || req.session.airline){
