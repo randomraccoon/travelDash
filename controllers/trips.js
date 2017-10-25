@@ -21,8 +21,10 @@ module.exports = {
                 returnObj.flights = returnObj.flights.map(f=>createFlightTitle(f));
                 returnObj.message = req.session.message;
                 req.session.message = null;
-                res.render('pages/trips',returnObj);
-                console.log("Trips load");
+                req.session.save(err=>{
+                  res.render('pages/trips',returnObj);
+                  console.log("Trips load");
+                });
               })
           })
       })
@@ -30,7 +32,9 @@ module.exports = {
         console.log(err);
         req.session.user = null;
         req.session.message = "There was a problem. Please try again.";
-        res.redirect('/');
+        req.session.save(err=>{
+          res.redirect('/');
+        });
       })
   },
 
@@ -44,12 +48,16 @@ module.exports = {
       }, '*')
       .then((result)=>{
         req.session.message = "Added trip!"
-        res.redirect('/trips');
+        req.session.save(err=>{
+          res.redirect('/trips');
+        });
       })
       .catch((err)=>{
         console.log(err);
         req.session.message = "There was an error adding the trip. Try again.";
-        res.redirect('/trips');
+        req.session.save(err=>{
+          res.redirect('/trips');
+        });
       })
   }
 };
