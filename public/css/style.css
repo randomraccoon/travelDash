@@ -37,7 +37,13 @@ html {
       }
 
 
-
+.table {
+  border-bottom: 5px solid black;
+  font-family: 'Questrial', sans-serif;
+  color: black;
+  width:100%;
+  align-self: center;
+}
 
 .homepageBody {
   background: black url("./mainbackground.jpeg") no-repeat center center fixed;
@@ -75,13 +81,14 @@ li {
 
 li a {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-family: 'Questrial', sans-serif;
     font-size: 16px;
     color: white;
+    z-index: 1000
 
   }
 
@@ -126,6 +133,10 @@ li a {
   font-family: 'Fascinate Inline', cursive;
   font-size: 100px;
   color: black;
+  margin-top: 10px;
+  margin-left: 0;
+  margin-bottom: 0;
+  margin-right: 0;
 }
 
 #standardBody {

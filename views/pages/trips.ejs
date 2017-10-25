@@ -1,9 +1,11 @@
 <% include ../partials/header %>
-<% include ../partials/navbar %>
+<ul class = "navbar" style="list-style: none;">
+  <li><a class="active" href="/logout">Log Out</a></li>
+</ul>
 <body class = "tripsBody">
 <div class = "container">
   <div class = "content">
-    <h1 id = "mainHeader">Travel Dash</h1>
+    <p id = "mainHeader">Travel Dash</p>
     <h2 id = "question"><%= name %>'s Trips</h2> <!--insert logic here-->
     <table class = 'table'>
           <thead>
@@ -24,7 +26,6 @@
           </tbody>
         </table>
     <h2 id = "question">Create New Trip</h2>
-    <p id = "standardBody">Select Flight</p>
     <form action="/trips" method="post" id = "standardBody">
       <select class="activities" name="flight">
           <option id = "option" value="" disabled selected>Select Flight</option>
