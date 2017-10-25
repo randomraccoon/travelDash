@@ -1,5 +1,5 @@
 const knex = require("../db/knex.js");
-const encryption = require('../config/encryption.js')
+const encryption = require('../config/encryption.js');
 
 module.exports = {
   index: function(req, res) {
