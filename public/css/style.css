@@ -203,12 +203,14 @@ li a {
   font-family: 'Questrial', sans-serif;
   font-size: 50px;
   font-weight: bolder;
+  margin: 0;
+  line-height: 20px;
   color: black;
-    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation: bounce 3s ease-out;
     -webkit-animation-iteration-count: infinite;
     opacity: 0.5;
 }
-@-webkit-keyframes pulsate {
+@-webkit-keyframes bounce {
     0% {
         opacity: 0.5;
     }
